@@ -1,5 +1,5 @@
 //조합 0의 개수
-
+////////
 #include<iostream>
 
 using namespace std;
@@ -8,44 +8,41 @@ int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n,m;
+    long long n,m;
     cin >> n >> m ;
 
     if(n/2<m) m=n-m;
 
-    int a2=0,a5=0;
-    int b2=0,b5=0;
-    int temp;
+    int a2=0, a5=0;
+    int b2=0, b5=0;
 
-    for(int i = n;i > n-m; i--){
-        temp = i;
-        while(temp%2==0){
-            a2++;
-            temp = temp/2;
-        }
-
-        while(temp%5==0){
-            a5++;
-            temp = temp/5;
-        }
+    for(long long i = n-n%2; i>n-m ; i-=2){
+        a2++;
     }
 
-    for(int i = 1; i<=m; i++){
-        temp = i;
-        while(temp%2==0){
-            b2++;
-            temp = temp/2;
-        }
-        while(temp%5==0){
-            b5++;
-            temp = temp/5;
-        }
+    for(long long i = n-n%5; i>n-m ;i-=5){
+        a5++;
     }
 
-    if(a2-b2<=0 || a5-b5<=0) cout << "0\n";
-    else if(a2-b2>a5-b5){
-        cout << a5-b5 << '\n';
+
+    for(long long i = n-n%25; i>n-m ; i-=25){
+        a5++;
     }
-    else cout << a2-b2 << '\n';
+
+
+    for(long long i = 5; i<=m ; i+=5){
+        b5++;
+    }
+
+
+
+    for(long long i = 25; i<=m ; i+=25){
+        b5++;
+    }
+
+
+    if(a5==0 || b5==0) cout << "0\n";
+    else cout << a5-b5 << '\n';
+
 
 }
