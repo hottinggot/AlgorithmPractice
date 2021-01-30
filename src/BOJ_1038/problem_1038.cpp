@@ -4,34 +4,28 @@
 
 using namespace std;
 
-int num[12];
+int cnt = 0;
+int temp = 0;
+int jls = 1;
 
-int next(int n){
+
+void dfs(int k) {
+    if(k==0) {
+        cnt++;
+
+        //k생성
+    }
+
+    int t = k%10;
+    if(t<(t/10)%10) {
+        dfs(k/10);
+    }
 
 }
 
 int main() {
-    int index = 10;
-    int jls = 11-index;
+    int n;
+    cin >> n;
 
-    int a;
-    int b;
-
-    int cnt = 0;
-
-    for(int i=1; i<=jls; i++){
-        if(jls>=2){
-            b = num[index+1];
-        } else {
-            b = 0;
-        }
-        for(int j=b; j<=9; j++) {
-            a = j;
-            cnt++;
-        }
-        jls++;
-        index--;
-    }
-    
- 
+    dfs(0);
 }
