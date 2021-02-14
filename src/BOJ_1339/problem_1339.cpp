@@ -2,36 +2,36 @@
 //https://ideone.com/Tl6klp
 
 #include<iostream>
-#include<vector>
 #include<algorithm>
-
-
+#include<math.h>
 
 using namespace std;
 
-vector<pair<int, string>> words;
-int arr[26];
+int b[26];
+int c[26];
 
-int go(int index, int n){
-    int len = words[index].first;
-
-    for(int i = index; words[i].first==len; i--){
-        arr[words[i].second[0] - 'A'] = n;
-    }
-
-}
-
-int main () {
+int main() {
     int n;
     cin >> n;
-
     for(int i=0; i<n; i++) {
-        string word;
-        cin >> word;
-
-        words.push_back({word.length(), word});
+        string s;
+        cin >> s;
+        for(int j=0; j<s.length() ;j++) {
+            b[s[j]-'A'] += pow(10, s.length()-j-1);
+        }
     }
 
-    sort(words.begin(), words.end());
+    sort(b, b+26);
+
+    int sum = 0;
+    int num = 9;
+
+    for(int i=25; i>=0; i--) {
+        if(b[i]==0) break;
+        sum+=b[i]*num;
+        num--;
+    }
+
+    cout << sum << '\n';
 
 }
