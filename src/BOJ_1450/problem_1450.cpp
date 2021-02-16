@@ -71,9 +71,7 @@ int main() {
             cnt+=p2+1;
             s = s-v1[p1] + v1[p1+1];
             p1++;
-            
         }
-          
     }
 
     cout << cnt << '\n';
