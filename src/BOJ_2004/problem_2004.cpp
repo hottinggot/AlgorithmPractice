@@ -1,48 +1,64 @@
 //조합 0의 개수
-////////
 #include<iostream>
 
 using namespace std;
 
-int main(){
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+typedef long long ll;
 
-    long long n,m;
-    cin >> n >> m ;
+int main() {
+    int n,m;
+    cin >> n >> m;
 
-    if(n/2<m) m=n-m;
+    int cnt2 = 0;
+    int cnt5 = 0;
 
-    int a2=0, a5=0;
-    int b2=0, b5=0;
+    ll k=2;
+    ll l=5;
 
-    for(long long i = n-n%2; i>n-m ; i-=2){
-        a2++;
+    while(l<=n) {
+        cnt5+=n/l;
+        l=l*5;
+    }
+    while(k<=n) {
+        cnt2+=n/k;
+        k=k*2;
     }
 
-    for(long long i = n-n%5; i>n-m ;i-=5){
-        a5++;
+    int temp2 = cnt2;
+    int temp5 = cnt5;
+
+    cnt2=0;
+    cnt5=0;
+    l=5;
+    k=2;
+    while(l<=m) {
+        cnt5+=m/l;
+        l=l*5;
+    }
+    while(k<=m) {
+        cnt2+=m/k;
+        k=k*2;
     }
 
+    temp2-=cnt2;
+    temp5-=cnt5;
 
-    for(long long i = n-n%25; i>n-m ; i-=25){
-        a5++;
+    cnt2=0;
+    cnt5=0;
+    l=5;
+    k=2;
+
+    while(l<=n-m) {
+        cnt5+=(n-m)/l;
+        l=l*5;
+    }
+    while(k<=n-m) {
+        cnt2+=(n-m)/k;
+        k=k*2;
     }
 
+    temp2-=cnt2;
+    temp5-=cnt5;
 
-    for(long long i = 5; i<=m ; i+=5){
-        b5++;
-    }
-
-
-
-    for(long long i = 25; i<=m ; i+=25){
-        b5++;
-    }
-
-
-    if(a5==0 || b5==0) cout << "0\n";
-    else cout << a5-b5 << '\n';
-
-
+    cout << min(temp2, temp5) << '\n';
 }
